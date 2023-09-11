@@ -13,10 +13,10 @@ const PromptSchema = new Schema({
     type: String,
     required: [true, 'Tag is required.'],
   },
-  selectedCategories: [{
+  selectedCategories: {
     type: String,
-    required: ['Food', 'Drink', 'Cannabis'],
-  }],
+    default: '',
+  },
 });
 
 const Prompt = models.Prompt || model('Prompt', PromptSchema);

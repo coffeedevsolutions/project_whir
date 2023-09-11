@@ -1,6 +1,34 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from 'react';
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  if (!post.selectedCategories) {
+    setPost((prevPost) => ({
+      ...prevPost,
+      selectedCategories: [],
+    }));
+  }
+
+  const handleCategoryChange = (category) => {
+    if (post.selectedCategories.includes(category)) {
+      setPost((prevPost) => ({
+        ...prevPost,
+        selectedCategories: prevPost.selectedCategories.filter(
+          (c) => c !== category
+        ),
+      }));
+    } else {
+      setPost((prevPost) => ({
+        ...prevPost,
+        selectedCategories: [...prevPost.selectedCategories, category],
+      }));
+    }
+  };
+
   return (
     <section className='w-full max-w-full flex-start flex-col'>
       <h1 className='head_text text-left'>
@@ -45,6 +73,45 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             className='form_input'
           />
         </label>
+
+        <div>
+          <label>Select Categories:</label>
+          <div className="checkbox-container">
+            <div className="checkbox-label" onClick={() => handleCategoryChange("Food")}>
+              <input
+                type="checkbox"
+                className="checkbox-input"
+                value="Food"
+                checked={post.selectedCategories?.includes("Food") || false}
+                onChange={(e) => handleCategoryChange(e, "Food")}
+                readOnly
+              />
+              <span className="checkbox-text">Food</span>
+            </div>
+            <div className="checkbox-label" onClick={() => handleCategoryChange("Drink")}>
+              <input
+                type="checkbox"
+                className="checkbox-input"
+                value="Drink"
+                checked={post.selectedCategories?.includes("Drink") || false}
+                onChange={(e) => handleCategoryChange(e, "Drink")}
+                readOnly
+              />
+              <span className="checkbox-text">Drink</span>
+            </div>
+            <div className="checkbox-label" onClick={() => handleCategoryChange("Weed")}>
+              <input
+                type="checkbox"
+                className="checkbox-input"
+                value="Weed"
+                checked={post.selectedCategories?.includes("Weed") || false}
+                onChange={(e) => handleCategoryChange(e, "Weed")}
+                readOnly
+              />
+              <span className="checkbox-text">Cannabis</span>
+            </div>
+          </div>
+        </div>
 
         <div className='flex-end mx-3 mb-5 gap-4'>
           <Link href='/' className='text-gray-500 text-sm'>

@@ -2,6 +2,10 @@
 
 import { useState, useEffect } from "react";
 
+import { FoodList, BoozeList, WeedList } from "./Menulist";
+import FoodComponent from "./Foodcomp";
+import BoozeComponent from "./boozecomp";
+import WeedComponent from "./weedcomp";
 import PromptCard from "./Promptcard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
@@ -67,6 +71,12 @@ const Feed = () => {
     setSearchedResults(searchResult);
   };
 
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
+
   return (
     <section className='feed'>
       <form className='relative w-full flex-center'>
@@ -80,6 +90,19 @@ const Feed = () => {
         />
       </form>
 
+      <div>
+        <div>
+          <button onClick={() => handleItemClick('food')} className="m-8 gap-10 font-satoshi font-bold">Food</button>
+          <button onClick={() => handleItemClick('booze')} className="m-8 gap-10 font-satoshi font-bold">Drinks</button>
+          <button onClick={() => handleItemClick('weed')} className="m-8 gap-10 font-satoshi font-bold">Cannabis</button>
+        </div>
+        <div>
+          {selectedItem === 'food' && <FoodComponent />}
+          {selectedItem === 'booze' && <BoozeComponent />}
+          {selectedItem === 'weed' && <WeedComponent />}
+        </div>
+      </div>
+
       {/* All Prompts */}
       {searchText ? (
         <PromptCardList
@@ -89,6 +112,7 @@ const Feed = () => {
       ) : (
         <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
       )}
+
     </section>
   );
 };

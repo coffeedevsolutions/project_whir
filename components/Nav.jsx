@@ -63,11 +63,25 @@ const Nav = () => {
                   onClick={() => {
                     signIn(provider.id);
                   }}
+                  className='mr-3 '
+                >
+                  Create Account
+                </button>
+              ))}
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type='button'
+                  key={provider.name}
+                  onClick={() => {
+                    signIn(provider.id);
+                  }}
                   className='black_btn'
                 >
                   Sign in
                 </button>
               ))}
+              
           </>
         )}
       </div>

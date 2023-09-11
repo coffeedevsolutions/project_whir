@@ -11,19 +11,23 @@ const CreatePrompt = () => {
   const { data: session } = useSession();
 
   const [submitting, setIsSubmitting] = useState(false);
-  const [post, setPost] = useState({ prompt: "", tag: "" });
+  const [post, setPost] = useState({ prompt: "", tag: "", selectedCategories: "" });
 
   const createPrompt = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
+
+      const selectedCategoriesString = post.selectedCategories.join(', ');
+
       const response = await fetch("/api/prompt/new", {
         method: "POST",
         body: JSON.stringify({
           prompt: post.prompt,
           userId: session?.user.id,
           tag: post.tag,
+          selectedCategories: selectedCategoriesString,
         }),
       });
 

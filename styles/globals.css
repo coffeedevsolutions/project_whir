@@ -70,6 +70,61 @@
   }
 }
 
+/* Styling for the checkboxes container */
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Styling for each checkbox label */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+/* Styling for the checkbox input */
+.checkbox-input {
+  display: none;
+}
+
+/* Styling for the checkbox text */
+.checkbox-text {
+  font-size: 16px;
+}
+
+/* Styling for the checked checkbox */
+.checkbox-input:checked + .checkbox-text::before {
+  content: '\2713'; /* Checkmark symbol */
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 20px;
+  background-color: #007bff; /* Color when checked */
+  color: #fff; /* Checkmark color */
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+/* Styling for the unchecked checkbox */
+.checkbox-input:not(:checked) + .checkbox-text::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007bff; /* Border color when unchecked */
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+/* Hover effect on the checkbox label */
+.checkbox-label:hover {
+  background-color: #f0f0f0; /* Background color on hover */
+}
+
 /* Tailwind Styles */
 
 .app {

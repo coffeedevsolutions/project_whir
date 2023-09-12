@@ -14,7 +14,7 @@ const PromptSchema = new Schema({
     required: [true, 'Tag is required.'],
   },
   selectedCategories: {
-    type: String,
+    type: Array,
     default: '',
   },
 });

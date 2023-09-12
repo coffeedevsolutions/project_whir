@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 
-import { FoodList, BoozeList, WeedList } from "./Menulist";
 import FoodComponent from "./Foodcomp";
 import BoozeComponent from "./boozecomp";
 import WeedComponent from "./weedcomp";
@@ -16,6 +15,7 @@ const PromptCardList = ({ data, handleTagClick }) => {
           key={post._id}
           post={post}
           handleTagClick={handleTagClick}
+          selectedCategories={post}
         />
       ))}
     </div>
@@ -77,6 +77,16 @@ const Feed = () => {
     setSelectedItem(item);
   };
 
+    // Filter the PromptCards based on the selected category
+    const filteredPromptCards =
+    selectedItem === "Food"
+      ? allPosts.filter((post) => post.category === "Food")
+      : selectedItem === "Drink"
+      ? allPosts.filter((post) => post.category === "Drink")
+      : selectedItem === "Weed"
+      ? allPosts.filter((post) => post.category === "Weed")
+      : allPosts;
+
   return (
     <section className='feed'>
       <form className='relative w-full flex-center'>
@@ -92,14 +102,35 @@ const Feed = () => {
 
       <div>
         <div>
-          <button onClick={() => handleItemClick('food')} className="m-8 gap-10 font-satoshi font-bold">Food</button>
-          <button onClick={() => handleItemClick('booze')} className="m-8 gap-10 font-satoshi font-bold">Drinks</button>
-          <button onClick={() => handleItemClick('weed')} className="m-8 gap-10 font-satoshi font-bold">Cannabis</button>
+        <button
+            onClick={() => handleItemClick("All")}
+            className="m-8 gap-10 font-satoshi font-bold"
+          >
+            All
+          </button>
+          <button
+            onClick={() => handleItemClick("Food")}
+            className="m-8 gap-10 font-satoshi font-bold"
+          >
+            Food
+          </button>
+          <button
+            onClick={() => handleItemClick("Drink")}
+            className="m-8 gap-10 font-satoshi font-bold"
+          >
+            Drinks
+          </button>
+          <button
+            onClick={() => handleItemClick("Weed")}
+            className="m-8 gap-10 font-satoshi font-bold"
+          >
+            Cannabis
+          </button>
         </div>
         <div>
-          {selectedItem === 'food' && <FoodComponent />}
-          {selectedItem === 'booze' && <BoozeComponent />}
-          {selectedItem === 'weed' && <WeedComponent />}
+          {selectedItem === "Food" && <FoodComponent />}
+          {selectedItem === "Drink" && <BoozeComponent />}
+          {selectedItem === "Weed" && <WeedComponent />}
         </div>
       </div>
 
@@ -110,7 +141,7 @@ const Feed = () => {
           handleTagClick={handleTagClick}
         />
       ) : (
-        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+        <PromptCardList data={filteredPromptCards} handleTagClick={handleTagClick} />
       )}
 
     </section>

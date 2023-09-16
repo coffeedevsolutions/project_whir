@@ -1,31 +1,51 @@
-// FoodComponent.js
-"use client";
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PromptCard from './Promptcard';
 
+const FoodComponent = () => {
+  const [foodPrompts, setFoodPrompts] = useState([]);
+  const [users, setUsers] = useState([]);
 
 
 
-const FoodComponent = ({ data, handleTagClick, handleItemClick }) => {
+  useEffect(() => {
+    // Make a GET request to fetch data from the server
+    fetch("/api/prompt/feed") // Replace with the actual API endpoint for fetching data
+      .then((response) => response.json())
+      .then((data) => {
+        // Extract prompts and users from the fetched data
+        const { prompts, users } = data;
+
+        // Filter the prompts to only include those with the "Food" tag
+        const filteredPrompts = prompts.filter((prompt) =>
+          prompt.selectedCategories.includes("Food")
+        );
+
+        setFoodPrompts(filteredPrompts);
+        setUsers(users);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch data:", error);
+      });
+  }, []);
+
   return (
     <div className='mt-16 prompt_layout'>
-      {data?.map((post) => {
-        // Assuming 'selectedCategory' is a string property containing the category
-        // Adjust the category comparison based on your data structure
-        if (post.selectedCategories === 'Food') {
-          return (
-            <PromptCard
-              key={post._id}
-              post={post}
-              handleTagClick={handleTagClick}
-              handleItemClick={handleItemClick}
-            />
-          );
-        } else {
-          // Render nothing if the category doesn't match 'Food'
-          return null;
-        }
+      {foodPrompts?.map((post) => {
+        // Find the user associated with the post
+        const user = users.find((u) => u._id);
+
+        // Debugging: Output relevant information to the console
+        console.log("post:", post);
+        console.log("user:", user);
+
+        return (
+          <PromptCard
+            key={post._id}
+            post={post}
+            selectedCategories={post.selectedCategories}
+            user={post.user} // Pass the user information to PromptCard
+          />
+        );
       })}
     </div>
   );

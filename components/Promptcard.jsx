@@ -12,7 +12,6 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick, selectedCa
 
   const [copied, setCopied] = useState("");
 
-  console.log(selectedCategories);
 
   const handleProfileClick = () => {
     console.log(post);
@@ -35,6 +34,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick, selectedCa
           className='flex-1 flex justify-start items-center gap-3 cursor-pointer'
           onClick={handleProfileClick}
         >
+          
           <Image
             src={post.creator?.image}
             alt='user_image'
@@ -74,7 +74,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick, selectedCa
       >
         #{post.tag}
       </p>
-      <p className='font-inter text-sm text-gray-400 cursor-pointer'>
+      <p hidden="" className='font-inter text-sm text-gray-400 cursor-pointer'>
         {post.selectedCategories}
       </p>
 

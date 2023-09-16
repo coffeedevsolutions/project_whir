@@ -15,7 +15,6 @@ const PromptCardList = ({ data, handleTagClick }) => {
           key={post._id}
           post={post}
           handleTagClick={handleTagClick}
-          selectedCategories={post}
         />
       ))}
     </div>
@@ -29,6 +28,8 @@ const Feed = () => {
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
+
+  const [selectedItem, setSelectedItem] = useState("All"); // Initialize with "All"
 
   const fetchPosts = async () => {
     const response = await fetch("/api/prompt");
@@ -71,8 +72,6 @@ const Feed = () => {
     setSearchedResults(searchResult);
   };
 
-  const [selectedItem, setSelectedItem] = useState(null);
-
   const handleItemClick = (item) => {
     setSelectedItem(item);
   };
@@ -101,7 +100,7 @@ const Feed = () => {
       </form>
 
       <div>
-        <div>
+        <div className="text-center">
         <button
             onClick={() => handleItemClick("All")}
             className="m-8 gap-10 font-satoshi font-bold"
@@ -139,9 +138,14 @@ const Feed = () => {
         <PromptCardList
           data={searchedResults}
           handleTagClick={handleTagClick}
+          handleItemClick={handleItemClick} // Pass the handler down to PromptCardList
         />
       ) : (
-        <PromptCardList data={filteredPromptCards} handleTagClick={handleTagClick} />
+        <PromptCardList
+          data={filteredPromptCards}
+          handleTagClick={handleTagClick}
+          handleItemClick={handleItemClick} // Pass the handler down to PromptCardList
+        />
       )}
 
     </section>

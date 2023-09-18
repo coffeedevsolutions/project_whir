@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import Membership from "@components/Membership";
 import Profile from "@components/Profile";
 
 const MyProfile = () => {
@@ -50,7 +51,7 @@ const MyProfile = () => {
   return (
     <Profile
       name='My'
-      desc='Welcome to your personalized profile page. Share your exceptional prompts and inspire others with the power of your imagination'
+      desc='Welcome to your personalized business page. Share your deals, menu items, and membership criteria for all of your loyal customers.'
       data={myPosts}
       handleEdit={handleEdit}
       handleDelete={handleDelete}

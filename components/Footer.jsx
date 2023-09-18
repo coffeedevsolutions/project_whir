@@ -8,7 +8,7 @@ const Footer = () => {
         <p className="footer-links">
           <a href="#">Privacy Policy</a>
           <span className="separator">|</span>
-          <a href="/toslayout">Terms of Service</a>
+          <a href="/Terms-Of-Service">Terms of Service</a>
         </p>
       </div>
     </footer>

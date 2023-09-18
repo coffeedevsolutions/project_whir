@@ -222,3 +222,23 @@
 .flex-between {
   @apply flex justify-between items-center;
 }
+
+.footer {
+  @apply w-full py-9 mt-16 text-center text-gray-400 text-sm bg-black/10 backdrop-blur-md backdrop-filter;
+}
+
+.footer-content {
+  @apply flex justify-center items-center;
+}
+
+.footer-links {
+  @apply flex justify-end items-center; /* Adjust the space between links */
+}
+
+.separator {
+  @apply mx-3; /* Adjust the spacing between separators */
+}
+
+.footer-copyright {
+  @apply flex mr-3
+}

@@ -2,6 +2,7 @@ import "@styles/globals.css";
 
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
+import Footer from "@components/Footer";
 
 export const metadata = {
   title: "Whir",
@@ -22,6 +23,9 @@ const RootLayout = ({ children }) => (
         </main>
       </Provider>
     </body>
+    <footer>
+      <Footer />
+    </footer>
   </html>
 );
 

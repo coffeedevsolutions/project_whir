@@ -125,6 +125,14 @@
   background-color: #f0f0f0; /* Background color on hover */
 }
 
+.footer {
+  /* ... (your existing styles) */
+  position: fixed; /* Position the footer */
+  bottom: 0; /* Stick it to the bottom */
+  width: 100%; /* Make it full-width */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
 /* Tailwind Styles */
 
 .app {
@@ -224,7 +232,7 @@
 }
 
 .footer {
-  @apply w-full py-9 mt-16 text-center text-gray-400 text-sm bg-black/10 backdrop-blur-md backdrop-filter;
+  @apply w-full py-9 mt-16 text-center text-gray-400 text-sm bg-black/10 backdrop-blur-md  backdrop-filter;
 }
 
 .footer-content {

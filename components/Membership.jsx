@@ -9,7 +9,7 @@ export const Membership = () => {
       <br className='max-md:hidden' />
       <span className='orange_gradient text-center '> Membership Plans </span>
     </h1>
-        <div className="app">
+        <div className="">
             <PricingTier />
         </div>
     </div>

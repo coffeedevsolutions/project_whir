@@ -236,7 +236,7 @@
 }
 
 .footer {
-  @apply w-full py-9 mt-16 text-center text-gray-400 text-sm bg-black/10 backdrop-blur-md  backdrop-filter;
+  @apply w-full py-4 mt-16 text-center text-gray-400 text-sm bg-black/10 backdrop-blur-md  backdrop-filter;
 }
 
 .footer-content {

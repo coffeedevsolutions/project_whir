@@ -1,3 +1,9 @@
+
+"use client";
+
+import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState, useEffect } from 'react';
 import PromptCard from './Promptcard';
 
@@ -32,7 +38,7 @@ const FoodComponent = () => {
     <div className='mt-16 prompt_layout'>
       {foodPrompts?.map((post) => {
         // Find the user associated with the post
-        const user = users.find((u) => u._id);
+        const user = users.find((u) => u._id === post.creator);
 
         // Debugging: Output relevant information to the console
         console.log("post:", post);
